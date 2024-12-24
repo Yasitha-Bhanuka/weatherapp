@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:weatherapp/widget/weather_data_tile.dart';
 
 void main() {
   runApp(const WeatherApp());
@@ -107,15 +108,32 @@ class _WeatherPageState extends State<WeatherPage> {
                 SizedBox(height: 25),
                 Card(
                   elevation: 5,
-                  child: Container(
-                    color: Colors.transparent,
-                    child: Column(
-                      children: [
-                        Row(
-                          children: [Text('Sunrise'), Text('Sunset')],
-                        )
-                      ],
-                    ),
+                  color: Colors.transparent,
+                  child: Padding(
+                    padding: const EdgeInsets.all(15),
+                    child: Column(children: [
+                      WeatherDataTile(
+                        // WeatherDataTile widget
+                        index1: 'Sunshine',
+                        index2: 'Sunset',
+                        value1: '6:00 AM',
+                        value2: '6:00 PM',
+                      ),
+                      WeatherDataTile(
+                        // WeatherDataTile widget
+                        index1: 'Humidity',
+                        index2: 'Wind',
+                        value1: '60%',
+                        value2: '10 km/h',
+                      ),
+                      WeatherDataTile(
+                        // WeatherDataTile widget
+                        index1: 'Pressure',
+                        index2: 'Visibility',
+                        value1: '1000 hPa',
+                        value2: '10 km',
+                      ),
+                    ]),
                   ),
                 )
               ],
