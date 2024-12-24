@@ -26,14 +26,15 @@ class _WeatherPageState extends State<WeatherPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: const <Widget>[
-            Text('Hello, Weather!'),
-          ],
+        body: Stack(
+      children: [
+        Image.asset(
+          'assets/images/haze.jpg',
+          fit: BoxFit.cover,
+          width: double.infinity,
+          height: double.infinity,
         ),
-      ),
-    );
+      ],
+    ));
   }
 }
