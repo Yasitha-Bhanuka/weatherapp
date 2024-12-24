@@ -10,6 +10,7 @@ class WeatherApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: WeatherPage(),
     );
   }
@@ -34,6 +35,27 @@ class _WeatherPageState extends State<WeatherPage> {
           width: double.infinity,
           height: double.infinity,
         ),
+        Padding(
+          padding: const EdgeInsets.all(15),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                SizedBox(height: 40),
+                TextField(
+                  decoration: InputDecoration(
+                    hintText: 'Enter City Name',
+                    suffixIcon: Icon(Icons.search),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(16)),
+                    ),
+                    filled: true,
+                    fillColor: Colors.black26,
+                  ),
+                )
+              ],
+            ),
+          ),
+        )
       ],
     ));
   }
