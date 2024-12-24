@@ -103,6 +103,7 @@ class _WeatherPageState extends State<WeatherPage> {
                     onSelected: (String selection) {
                       _controller.text = selection;
                       getData(selection);
+                      FocusScope.of(context).unfocus();
                     },
                     fieldViewBuilder: (BuildContext context,
                         TextEditingController textEditingController,
@@ -114,6 +115,7 @@ class _WeatherPageState extends State<WeatherPage> {
                         onSubmitted: (value) {
                           onFieldSubmitted();
                           getData(value);
+                          FocusScope.of(context).unfocus();
                         },
                         decoration: InputDecoration(
                           hintText: 'Enter City Name',
