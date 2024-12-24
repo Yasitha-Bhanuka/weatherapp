@@ -20,7 +20,7 @@ class WeatherService {
     }
   }
 
-  Future<Map<String, dynamic>> fetchWeather(String cityName) async {
+  Future<Map<String, dynamic>> fetchWeather() async {
     Position position = await Geolocator.getCurrentPosition(
         locationSettings: LocationSettings(accuracy: LocationAccuracy.high));
 

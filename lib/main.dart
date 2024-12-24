@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:weatherapp/services/weather_services.dart';
 import 'package:weatherapp/widget/weather_data_tile.dart';
 import 'package:intl/intl.dart';
@@ -46,7 +47,12 @@ class _WeatherPageState extends State<WeatherPage> {
 
   getData(String cityName) async {
     final weatherService = WeatherService();
-    final weatherData = await weatherService.getWeather(cityName);
+    var weatherData;
+    if (cityName == '') {
+      weatherData = await weatherService.fetchWeather();
+    } else {
+      weatherData = await weatherService.getWeather(cityName);
+    }
 
     debugPrint(weatherData.toString());
     setState(() {
@@ -85,6 +91,20 @@ class _WeatherPageState extends State<WeatherPage> {
         _iconImg = 'assets/icons/Haze.png';
       }
     });
+  }
+
+  Future<bool> _checkLocationPermissoin() async {
+    LocationPermission permission = await Geolocator.checkPermission();
+
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied) {
+        return false;
+      }
+      getData('');
+    }
+    getData('');
+    return true;
   }
 
   @override
