@@ -32,17 +32,17 @@ class _WeatherPageState extends State<WeatherPage> {
   final TextEditingController _controller = TextEditingController();
   String _bgImg = 'assets/images/clear.jpg';
   String _iconImg = 'assets/icons/Clear.png';
-  String _cityName = '';
-  String _temperature = '';
-  String _tempMax = '';
-  String _tempMin = '';
-  String _sunrise = '';
-  String _sunset = '';
-  String _main = '';
-  String _presure = '';
-  String _humidity = '';
-  String _visibility = '';
-  String _windSpeed = '';
+  String _cityName = 'New York';
+  String _temperature = '15.00';
+  String _tempMax = '18.00';
+  String _tempMin = '12.00';
+  String _sunrise = '06:00 AM';
+  String _sunset = '07:00 PM';
+  String _main = 'Clear';
+  String _presure = '1013';
+  String _humidity = '60';
+  String _visibility = '10000';
+  String _windSpeed = '5.00';
 
   getData(String cityName) async {
     final weatherService = WeatherService();
@@ -51,10 +51,10 @@ class _WeatherPageState extends State<WeatherPage> {
     debugPrint(weatherData.toString());
     setState(() {
       _cityName = weatherData['name'];
-      _temperature = weatherData['main']['temp'].toStringAsFixed(1);
+      _temperature = (weatherData['main']['temp'] - 273.15).toStringAsFixed(2);
       _main = weatherData['weather'][0]['main'];
-      _tempMax = weatherData['main']['temp_max'].toStringAsFixed(1);
-      _tempMin = weatherData['main']['temp_min'].toStringAsFixed(1);
+      _tempMax = (weatherData['main']['temp_max'] - 273.15).toStringAsFixed(2);
+      _tempMin = (weatherData['main']['temp_min'] - 273.15).toStringAsFixed(2);
       _sunrise = DateFormat('hh:mm a').format(
           DateTime.fromMillisecondsSinceEpoch(
               weatherData['sys']['sunrise'] * 1000));
@@ -148,7 +148,7 @@ class _WeatherPageState extends State<WeatherPage> {
                 Row(
                   children: [
                     Text(
-                      "Haze",
+                      _main,
                       style: TextStyle(
                         color: Colors.black,
                         fontSize: 30,
