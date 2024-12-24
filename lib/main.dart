@@ -29,8 +29,6 @@ class WeatherPage extends StatefulWidget {
 }
 
 class _WeatherPageState extends State<WeatherPage> {
-  final TextEditingController _Controller = TextEditingController();
-
   final TextEditingController _controller = TextEditingController();
   String _bgImg = 'assets/images/clear.jpg';
   String _iconImg = 'assets/icons/Clear.png';
@@ -95,7 +93,7 @@ class _WeatherPageState extends State<WeatherPage> {
         body: Stack(
       children: [
         Image.asset(
-          'assets/images/haze.jpg',
+          _bgImg,
           fit: BoxFit.cover,
           width: double.infinity,
           height: double.infinity,
@@ -127,7 +125,7 @@ class _WeatherPageState extends State<WeatherPage> {
                   children: [
                     Icon(Icons.location_on),
                     Text(
-                      'Colombo',
+                      _cityName,
                       style: TextStyle(
                         color: Colors.black,
                         fontSize: 20,
@@ -139,7 +137,7 @@ class _WeatherPageState extends State<WeatherPage> {
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
-                    "30.9°c",
+                    '$_temperature°c',
                     style: TextStyle(
                       color: Colors.black,
                       fontSize: 90,
@@ -157,7 +155,7 @@ class _WeatherPageState extends State<WeatherPage> {
                       ),
                     ),
                     Image.asset(
-                      'assets/icons/Clear.png',
+                      _iconImg,
                       height: 80,
                     ),
                   ],
@@ -165,11 +163,11 @@ class _WeatherPageState extends State<WeatherPage> {
                 SizedBox(height: 25),
                 Row(children: [
                   Icon(Icons.arrow_upward),
-                  Text('35°c',
+                  Text(_tempMax,
                       style:
                           TextStyle(fontSize: 22, fontStyle: FontStyle.italic)),
                   Icon(Icons.arrow_downward),
-                  Text('25°c',
+                  Text(_tempMin,
                       style:
                           TextStyle(fontSize: 22, fontStyle: FontStyle.italic))
                 ]),
@@ -182,24 +180,24 @@ class _WeatherPageState extends State<WeatherPage> {
                     child: Column(children: [
                       WeatherDataTile(
                         // WeatherDataTile widget
-                        index1: 'Sunshine',
+                        index1: 'Sunrise',
                         index2: 'Sunset',
-                        value1: '6:00 AM',
-                        value2: '6:00 PM',
+                        value1: _sunrise,
+                        value2: _sunset,
                       ),
                       WeatherDataTile(
                         // WeatherDataTile widget
                         index1: 'Humidity',
                         index2: 'Wind',
-                        value1: '60%',
-                        value2: '10 km/h',
+                        value1: _humidity,
+                        value2: '$_windSpeed+ km/h',
                       ),
                       WeatherDataTile(
                         // WeatherDataTile widget
                         index1: 'Pressure',
                         index2: 'Visibility',
-                        value1: '1000 hPa',
-                        value2: '10 km',
+                        value1: _presure,
+                        value2: _visibility,
                       ),
                     ]),
                   ),
