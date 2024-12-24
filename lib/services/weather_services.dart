@@ -3,7 +3,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:http/http.dart' as http;
 
-class WheatherService {
+class WeatherService {
   final String apiKey = dotenv.env['WEATHER_API_KEY'] ?? '';
 
   Future<Map<String, dynamic>> getWeather(String cityName) async {

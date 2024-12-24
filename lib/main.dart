@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:weatherapp/services/wheather_services.dart';
+import 'package:weatherapp/services/weather_services.dart';
 import 'package:weatherapp/widget/weather_data_tile.dart';
+import 'package:intl/intl.dart';
 
 void main() async {
   await dotenv.load(fileName: ".env");
@@ -30,44 +31,43 @@ class WeatherPage extends StatefulWidget {
 class _WeatherPageState extends State<WeatherPage> {
   final TextEditingController _Controller = TextEditingController();
 
+  final TextEditingController _controller = TextEditingController();
   String _bgImg = 'assets/images/clear.jpg';
   String _iconImg = 'assets/icons/Clear.png';
-  String _cityName = 'Colombo';
-  String _temperature = '30.9';
-  String _tempMax = '35';
-  String _tempMin = '25';
-  String _sunrise = '6:00 AM';
-  String _sunset = '6:00 PM';
-  String _main = 'Haze';
-  String _pressure = '1000 hPa';
-  String _humidity = '60%';
-  String _visibility = '10 km';
-  String _windSpeed = '10 km/h';
+  String _cityName = '';
+  String _temperature = '';
+  String _tempMax = '';
+  String _tempMin = '';
+  String _sunrise = '';
+  String _sunset = '';
+  String _main = '';
+  String _presure = '';
+  String _humidity = '';
+  String _visibility = '';
+  String _windSpeed = '';
 
   getData(String cityName) async {
-    final weatherService = WheatherService();
+    final weatherService = WeatherService();
     final weatherData = await weatherService.getWeather(cityName);
+
     debugPrint(weatherData.toString());
     setState(() {
       _cityName = weatherData['name'];
-      _temperature = (weatherData['main']['temp'] - 273.15).toStringAsFixed(1);
-      _tempMax = (weatherData['main']['temp_max'] - 273.15).toStringAsFixed(1);
-      _tempMin = (weatherData['main']['temp_min'] - 273.15).toStringAsFixed(1);
-      _sunrise = DateTime.fromMillisecondsSinceEpoch(
-              weatherData['sys']['sunrise'] * 1000)
-          .toString();
-      _sunset = DateTime.fromMillisecondsSinceEpoch(
-              weatherData['sys']['sunset'] * 1000)
-          .toString();
+      _temperature = weatherData['main']['temp'].toStringAsFixed(1);
       _main = weatherData['weather'][0]['main'];
-      _pressure = weatherData['main']['pressure'].toString();
+      _tempMax = weatherData['main']['temp_max'].toStringAsFixed(1);
+      _tempMin = weatherData['main']['temp_min'].toStringAsFixed(1);
+      _sunrise = DateFormat('hh:mm a').format(
+          DateTime.fromMillisecondsSinceEpoch(
+              weatherData['sys']['sunrise'] * 1000));
+      _sunset = DateFormat('hh:mm a').format(
+          DateTime.fromMillisecondsSinceEpoch(
+              weatherData['sys']['sunset'] * 1000));
+      _presure = weatherData['main']['pressure'].toString();
       _humidity = weatherData['main']['humidity'].toString();
       _visibility = weatherData['visibility'].toString();
       _windSpeed = weatherData['wind']['speed'].toString();
-      if (_main == 'Haze') {
-        _bgImg = 'assets/images/haze.jpg';
-        _iconImg = 'assets/icons/Haze.png';
-      } else if (_main == 'Clear') {
+      if (_main == 'Clear') {
         _bgImg = 'assets/images/clear.jpg';
         _iconImg = 'assets/icons/Clear.png';
       } else if (_main == 'Clouds') {
@@ -76,9 +76,15 @@ class _WeatherPageState extends State<WeatherPage> {
       } else if (_main == 'Rain') {
         _bgImg = 'assets/images/rain.jpg';
         _iconImg = 'assets/icons/Rain.png';
-      } else if (_main == 'Snow') {
-        _bgImg = 'assets/images/snow.jpg';
-        _iconImg = 'assets/icons/Snow.png';
+      } else if (_main == 'Fog') {
+        _bgImg = 'assets/images/fog.jpg';
+        _iconImg = 'assets/icons/Haze.png';
+      } else if (_main == 'Thunderstorm') {
+        _bgImg = 'assets/images/thunderstorm.jpg';
+        _iconImg = 'assets/icons/Thunderstorm.png';
+      } else {
+        _bgImg = 'assets/images/haze.jpg';
+        _iconImg = 'assets/icons/Haze.png';
       }
     });
   }
@@ -101,6 +107,10 @@ class _WeatherPageState extends State<WeatherPage> {
               children: [
                 SizedBox(height: 40),
                 TextField(
+                  controller: _controller,
+                  onChanged: (value) {
+                    getData(value);
+                  },
                   decoration: InputDecoration(
                     hintText: 'Enter City Name',
                     suffixIcon: Icon(Icons.search),
