@@ -5,6 +5,7 @@ import 'package:weatherapp/services/weather_services.dart';
 import 'package:weatherapp/widget/weather_data_tile.dart';
 import 'package:weatherapp/models/weather_model.dart';
 import 'package:weatherapp/models/cities_model.dart';
+import 'package:weatherapp/splash_screen.dart';
 
 void main() async {
   await dotenv.load(fileName: ".env");
@@ -18,7 +19,7 @@ class WeatherApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: WeatherPage(),
+      home: const SplashScreen(),
     );
   }
 }
