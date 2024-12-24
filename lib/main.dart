@@ -93,6 +93,31 @@ class _WeatherPageState extends State<WeatherPage> {
                     ),
                   ],
                 ),
+                SizedBox(height: 25),
+                Row(children: [
+                  Icon(Icons.arrow_upward),
+                  Text('35°c',
+                      style:
+                          TextStyle(fontSize: 22, fontStyle: FontStyle.italic)),
+                  Icon(Icons.arrow_downward),
+                  Text('25°c',
+                      style:
+                          TextStyle(fontSize: 22, fontStyle: FontStyle.italic))
+                ]),
+                SizedBox(height: 25),
+                Card(
+                  elevation: 5,
+                  child: Container(
+                    color: Colors.transparent,
+                    child: Column(
+                      children: [
+                        Row(
+                          children: [Text('Sunrise'), Text('Sunset')],
+                        )
+                      ],
+                    ),
+                  ),
+                )
               ],
             ),
           ),
