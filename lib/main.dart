@@ -108,7 +108,7 @@ class _WeatherPageState extends State<WeatherPage> {
                 SizedBox(height: 40),
                 TextField(
                   controller: _controller,
-                  onChanged: (value) {
+                  onSubmitted: (value) {
                     getData(value);
                   },
                   decoration: InputDecoration(
