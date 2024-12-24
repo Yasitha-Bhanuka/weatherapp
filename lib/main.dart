@@ -53,7 +53,7 @@ class _WeatherPageState extends State<WeatherPage> {
 
   getData(String cityName) async {
     final weatherService = WeatherService();
-    var weatherData;
+    Map<String, dynamic> weatherData;
     if (cityName == '') {
       weatherData = await weatherService.fetchWeather();
     } else {
@@ -137,6 +137,7 @@ class _WeatherPageState extends State<WeatherPage> {
                   },
                   decoration: InputDecoration(
                     hintText: 'Enter City Name',
+                    hintStyle: TextStyle(color: Colors.white),
                     suffixIcon: Icon(Icons.search),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(16)),
