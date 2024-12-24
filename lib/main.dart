@@ -30,20 +30,26 @@ class WeatherPage extends StatefulWidget {
 }
 
 class _WeatherPageState extends State<WeatherPage> {
+  @override
+  void initState() {
+    _checkLocationPermissoin();
+    super.initState();
+  }
+
   final TextEditingController _controller = TextEditingController();
   String _bgImg = 'assets/images/clear.jpg';
   String _iconImg = 'assets/icons/Clear.png';
-  String _cityName = 'New York';
-  String _temperature = '15.00';
-  String _tempMax = '18.00';
-  String _tempMin = '12.00';
-  String _sunrise = '06:00 AM';
-  String _sunset = '07:00 PM';
-  String _main = 'Clear';
-  String _presure = '1013';
-  String _humidity = '60';
-  String _visibility = '10000';
-  String _windSpeed = '5.00';
+  String _cityName = '';
+  String _temperature = '';
+  String _tempMax = '';
+  String _tempMin = '';
+  String _sunrise = '';
+  String _sunset = '';
+  String _main = '';
+  String _presure = '';
+  String _humidity = '';
+  String _visibility = '';
+  String _windSpeed = '';
 
   getData(String cityName) async {
     final weatherService = WeatherService();
@@ -199,21 +205,18 @@ class _WeatherPageState extends State<WeatherPage> {
                     padding: const EdgeInsets.all(15),
                     child: Column(children: [
                       WeatherDataTile(
-                        // WeatherDataTile widget
                         index1: 'Sunrise',
                         index2: 'Sunset',
                         value1: _sunrise,
                         value2: _sunset,
                       ),
                       WeatherDataTile(
-                        // WeatherDataTile widget
                         index1: 'Humidity',
                         index2: 'Wind',
                         value1: _humidity,
                         value2: '$_windSpeed+ km/h',
                       ),
                       WeatherDataTile(
-                        // WeatherDataTile widget
                         index1: 'Pressure',
                         index2: 'Visibility',
                         value1: _presure,
