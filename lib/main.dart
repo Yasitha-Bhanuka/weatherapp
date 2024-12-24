@@ -51,7 +51,48 @@ class _WeatherPageState extends State<WeatherPage> {
                     filled: true,
                     fillColor: Colors.black26,
                   ),
-                )
+                ),
+                SizedBox(height: 15),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(Icons.location_on),
+                    Text(
+                      'Colombo',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 20,
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 40),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    "30.9°c",
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 90,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                Row(
+                  children: [
+                    Text(
+                      "Haze",
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 30,
+                      ),
+                    ),
+                    Image.asset(
+                      'assets/icons/Clear.png',
+                      height: 80,
+                    ),
+                  ],
+                ),
               ],
             ),
           ),
