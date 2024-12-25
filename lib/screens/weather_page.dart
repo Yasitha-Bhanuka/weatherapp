@@ -25,15 +25,26 @@ class _WeatherPageState extends State<WeatherPage> {
   getData(String cityName) async {
     final weatherService = WeatherService();
     Map<String, dynamic> data;
-    if (cityName.isEmpty) {
-      data = await weatherService.fetchWeather();
-    } else {
-      data = await weatherService.getWeather(cityName);
-    }
+    try {
+      if (cityName.isEmpty) {
+        data = await weatherService.fetchWeather();
+      } else {
+        data = await weatherService.getWeather(cityName);
+      }
 
-    setState(() {
-      _weatherData = WeatherModel.fromJson(data);
-    });
+      setState(() {
+        _weatherData = WeatherModel.fromJson(data);
+      });
+    } catch (e) {
+      // Show a pop-up message when an error occurs
+      // ignore: use_build_context_synchronously
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('The country name is not valid. Please try again.'),
+          backgroundColor: Colors.red,
+        ),
+      );
+    }
   }
 
   Future<bool> _checkLocationPermissoin() async {
@@ -104,7 +115,13 @@ class _WeatherPageState extends State<WeatherPage> {
                           decoration: InputDecoration(
                             hintText: 'Enter City Name',
                             hintStyle: TextStyle(color: Colors.white),
-                            suffixIcon: Icon(Icons.search),
+                            suffixIcon: IconButton(
+                              icon: Icon(Icons.search),
+                              onPressed: () {
+                                getData(textEditingController.text);
+                                FocusScope.of(context).unfocus();
+                              },
+                            ),
                             border: OutlineInputBorder(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(16)),
