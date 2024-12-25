@@ -4,7 +4,29 @@ A new Flutter project. 🚀
 
 In the process of developing this app, I have gained valuable experience in using web APIs and handling requests efficiently with the help of various dependencies. 📡
 
-### Dependencies
+## ✨ Features
+
+- 🌦️ Fetch weather data based on the current location using geolocation
+- 🔍 Search for weather information by city name
+- 📊 Display detailed weather information including temperature, sunrise/sunset times, and more
+- 🎨 Beautiful and responsive UI
+- 📱 Cross-platform support (iOS, Android, Web)
+- 🎯 Adaptive design for different screen sizes
+
+## 📽 Project Demo Video
+- **Search for weather information by city name**
+- **Fetch weather data based on the current location**
+- **Display detailed weather information including temperature, sunrise/sunset times, and more**
+
+https://github.com/user-attachments/assets/707e3659-4aeb-4525-8406-5efe9b239bfe
+
+## 🛠️ Tech Stack
+
+- **Framework**: Flutter (SDK ^3.6.0)
+- **Language**: Dart
+- **API**: OpenWeatherMap API
+
+## 📦 Dependencies
 
 ```yaml
 dependencies:
@@ -18,28 +40,18 @@ dependencies:
     permission_handler: ^11.3.1
 ```
 
-## Overview
+## 📂 Project Structure
 
-`weatherapp` is a Flutter application designed to provide weather updates based on the user's current location or a searched city. The app features a user-friendly interface with real-time weather data, including temperature, sunrise/sunset times, and more.
+```yaml
+lib/
+├── models/           # Data models
+├── services/         # Business logic services
+├── screens/          # UI screens
+├── widgets/          # Reusable widgets
+└── [main.dart](lib/main.dart)        # App entry point
+```
 
-## Features
-
-- Fetch weather data based on the current location using geolocation.
-- Search for weather information by city name.
-- Display detailed weather information including temperature, sunrise/sunset times, and more.
-- Improved UI responsiveness and user interaction.
-- Splash screen for enhanced app loading experience.
-
-## Technologies Used
-
-- **Flutter**: For building the cross-platform mobile application.
-- **Dart**: The programming language used with Flutter.
-- **Geolocation**: To fetch weather data based on the user's current location.
-- **dotenv**: For managing environment variables, such as the weather API key.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
+## 🚀 Getting Started
 
 ### Prerequisites
 
@@ -49,44 +61,59 @@ This project is a starting point for a Flutter application.
 
 ### Installation
 
-1. Clone the repository:
+1. **Clone the repository:**
     ```sh
     git clone https://github.com/Yasitha-Bhanuka/weatherapp.git
     ```
-2. Navigate to the project directory:
+2. **Navigate to the project directory:**
     ```sh
     cd weatherapp
     ```
-3. Install dependencies:
+3. **Install dependencies:**
     ```sh
     flutter pub get
     ```
-4. Create a `.env` file in the root directory and add your weather API key:
+4. **Create a `.env` file in the root directory and add your weather API key:**
     ```env
     WEATHER_API_KEY=your_api_key_here
     ```
-5. Run the application:
+5. **Run the application:**
     ```sh
     flutter run
     ```
 
-## Resources
+Make sure you have Flutter and Dart SDK installed on your machine. For more information, refer to the [Flutter installation guide](https://flutter.dev/docs/get-started/install).
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## 🌟 Core Features
 
-For help getting started with Flutter development, view the [online documentation](https://docs.flutter.dev/), which offers tutorials, samples, guidance on mobile development, and a full API reference.
+- Fetch weather data based on the current location using geolocation
+- Search for weather information by city name
+- Display detailed weather information including temperature, sunrise/sunset times, and more
+- Cross-platform compatibility (iOS, Android, Web)
 
-## Commit History
+## 🤝 Contributing
 
-The commit history provides a detailed log of the project's development, including feature additions, refactoring, and bug fixes. Notable commits include:
+Contributions are welcome! Please follow these steps to contribute:
 
-- Adding geolocation support to fetch weather data.
-- Implementing weather data fetching functionality.
-- Enhancing the WeatherPage UI and user interaction.
-- Adding a splash screen for improved loading experience.
+1. Fork the repository
+2. Create a new branch (`git checkout -b feature-branch`)
+3. Make your changes
+4. Commit your changes (`git commit -m 'Add new feature'`)
+5. Push to the branch (`git push origin feature-branch`)
+6. Create a pull request
 
-For a complete list of changes, refer to the commit history in the repository.
 
+## 👤 Author
+
+- **Yasitha Bhanuka** - [GitHub](https://github.com/Yasitha-Bhanuka)
+
+## 🙏 Acknowledgements
+
+- Flutter community for their amazing support and resources
+
+## 📞 Contact
+
+For any inquiries or feedback, please contact me at:
+
+- GitHub: [Yasitha-Bhanuka](https://github.com/Yasitha-Bhanuka)
